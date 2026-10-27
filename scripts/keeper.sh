@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Keeper for a deployed OurDAO contract (#337, #338). Every call it makes is
+# Keeper for a deployed stellar-dapp-forever contract (#337, #338). Every call it makes is
 # permissionless on-chain, so anyone can run this from cron:
 #
 #   1. Defaults: mark_loan_defaulted for each active loan whose
@@ -25,12 +25,12 @@
 #   -h, --help            Show this help.
 #
 # Environment overrides:
-#   IDENTITY    stellar keys identity that pays the fees (default: ourdao-keeper).
+#   IDENTITY    stellar keys identity that pays the fees (default: stellar-dapp-forever-keeper).
 #               It must already exist and be funded, e.g.:
-#               stellar keys generate ourdao-keeper --network testnet --fund
+#               stellar keys generate stellar-dapp-forever-keeper --network testnet --fund
 #
 # Example crontab entry (every 15 minutes):
-#   */15 * * * * /path/to/ourdao-contracts/scripts/keeper.sh --network testnet <contract-id> >> ~/ourdao-keeper.log 2>&1
+#   */15 * * * * /path/to/stellar-dapp-forever/scripts/keeper.sh --network testnet <contract-id> >> ~/stellar-dapp-forever-keeper.log 2>&1
 #
 # Due times use this machine's clock. A record can look due a few seconds
 # before the ledger agrees; the contract then rejects it and the next run
@@ -40,7 +40,7 @@
 set -euo pipefail
 
 NETWORK="${NETWORK:-testnet}"
-IDENTITY="${IDENTITY:-ourdao-keeper}"
+IDENTITY="${IDENTITY:-stellar-dapp-forever-keeper}"
 CONTRACT_ID=""
 DRY_RUN=0
 DUE=0

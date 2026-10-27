@@ -1,5 +1,5 @@
 #![no_std]
-//! OurDAO — a member-owned lending DAO for Stellar Soroban.
+//! stellar-dapp-forever — a member-owned lending DAO for Stellar Soroban.
 //!
 //! All value moves through a single configurable token set at initialization
 //! (USDC, XLM via the Stellar Asset Contract, or any Stellar asset). Four
@@ -382,11 +382,6 @@ impl OurDao {
 
     pub fn get_member(env: Env, address: Address) -> Option<Member> {
         storage::get_member(&env, &address)
-    }
-
-
-    pub fn try_execute_policy_update(env: Env, caller: Address) -> Result<(), Error> {
-        admin::try_execute_policy_update(&env, caller)
     }
 
     /// Returns `member`'s lifetime loan track record: total loans taken, loans

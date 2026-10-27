@@ -1,6 +1,6 @@
 [package]
-name = "ourdao-dao"
-description = "OurDAO — a member-owned lending DAO for Stellar Soroban"
+name = "stellar-dapp-forever"
+description = "stellar-dapp-forever — a member-owned lending DAO for Stellar Soroban"
 version = { workspace = true }
 edition = { workspace = true }
 license = { workspace = true }

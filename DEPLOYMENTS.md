@@ -1,6 +1,6 @@
-# OurDAO Contract Deployments
+# stellar-dapp-forever Contract Deployments
 
-This document tracks the OurDAO DAO contract deployments across networks. Each deployment is linked to a specific GitHub release.
+This document tracks the stellar-dapp-forever DAO contract deployments across networks. Each deployment is linked to a specific GitHub release.
 
 ## Network Deployments
 
@@ -26,13 +26,13 @@ The testnet DAO also holds a second test asset, `OURTESTB`, so multi-token flows
 
 To verify a deployed contract matches a GitHub release:
 
-1. **Find the release** — Go to [Releases](https://github.com/ourdao/ourdao-contracts/releases) and select the version.
+1. **Find the release** — Go to [Releases](https://github.com/the-Devdrago/stellar-dapp-forever/releases) and select the version.
 
-2. **Download the wasm** — Each release includes `ourdao_dao.optimized.wasm`.
+2. **Download the wasm** — Each release includes `stellar_dapp_forever.optimized.wasm`.
 
 3. **Verify the checksum** — Compare the SHA-256 hash in the release notes against your copy:
    ```bash
-   sha256sum ourdao_dao.optimized.wasm
+   sha256sum stellar_dapp_forever.optimized.wasm
    ```
 
 4. **Confirm the contract ID** — Query the network for the contract you deployed:

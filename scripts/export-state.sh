@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Dumps the live state of a deployed OurDAO contract as one JSON document (#336).
+# Dumps the live state of a deployed stellar-dapp-forever contract (#336).
 # Every value comes from a read-only view, simulated with `--send=no`, so nothing
 # is signed or submitted. This is step 3 of the migration procedure in
 # docs/MIGRATION.md: run it as soon as the contract is paused, then again if
@@ -15,7 +15,7 @@
 #   -h, --help            Show this help.
 #
 # Environment overrides:
-#   IDENTITY    stellar keys identity used to simulate the reads (default: ourdao-deployer).
+#   IDENTITY    stellar keys identity used to simulate the reads (default: stellar-dapp-forever-deployer).
 #               It needs to exist but holds no funds.
 #   PAGE_SIZE   member records fetched per list_members call (default: 100).
 #
@@ -33,7 +33,7 @@
 set -euo pipefail
 
 NETWORK="${NETWORK:-testnet}"
-IDENTITY="${IDENTITY:-ourdao-deployer}"
+IDENTITY="${IDENTITY:-stellar-dapp-forever-deployer}"
 PAGE_SIZE="${PAGE_SIZE:-100}"
 CONTRACT_ID=""
 OUT=""

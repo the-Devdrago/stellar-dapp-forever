@@ -16,7 +16,7 @@
 
 set -euo pipefail
 
-WASM_PATH="contracts/dao/target/wasm32v1-none/release/ourdao_dao.wasm"
+WASM_PATH="contracts/dao/target/wasm32v1-none/release/stellar_dapp_forever.wasm"
 OUT_DIR="contract"
 OUT_JSON="${OUT_DIR}/contract-interface.json"
 OUT_SUMMARY="${OUT_DIR}/interface-summary.txt"
@@ -30,7 +30,7 @@ for arg in "$@"; do
 done
 
 echo "Building contract wasm..."
-cargo build --target wasm32v1-none --release -p ourdao-dao 2>&1 | tail -5
+cargo build --target wasm32v1-none --release -p stellar-dapp-forever 2>&1 | tail -5
 
 if [ ! -f "$WASM_PATH" ]; then
   echo "Error: wasm not found at $WASM_PATH after build" >&2

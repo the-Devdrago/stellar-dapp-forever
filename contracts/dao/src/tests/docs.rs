@@ -24,7 +24,7 @@ fn document_hash_exactly_64_bytes_accepted() {
     let pid = s.client.request_loan(&member, &500, &None);
 
     // Create exactly 64 byte hash.
-    let hash_64 = Bytes::new(
+    let hash_64 = Bytes::from_slice(
         &s.env,
         &[
             0u8, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
@@ -47,7 +47,7 @@ fn document_hash_65_bytes_rejected() {
     let pid = s.client.request_loan(&member, &500, &None);
 
     // Create 65 byte hash.
-    let hash_65 = Bytes::new(
+    let hash_65 = Bytes::from_slice(
         &s.env,
         &[
             0u8, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,

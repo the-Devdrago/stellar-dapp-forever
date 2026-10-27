@@ -1,23 +1,23 @@
 <p align="center">
-  <img src="assets/logo.png" alt="OurDAO logo" width="96" />
+  <img src="assets/logo.png" alt="stellar-dapp-forever logo" width="96" />
 </p>
 
-# OurDAO — Stellar Soroban Lending DAO
+# stellar-dapp-forever — Stellar Soroban Lending DAO
 
-[![CI](https://github.com/ourdao/ourdao-contracts/actions/workflows/ci.yml/badge.svg)](https://github.com/ourdao/ourdao-contracts/actions/workflows/ci.yml)
+[![CI](https://github.com/the-Devdrago/stellar-dapp-forever/actions/workflows/ci.yml/badge.svg)](https://github.com/the-Devdrago/stellar-dapp-forever/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 A member-owned lending DAO implemented as a single [Soroban](https://developers.stellar.org/docs/build/smart-contracts) smart contract in Rust — 2,300+ lines across 13 focused modules, 31 unit tests, CI-gated on every push.
 
 The execution model, storage layout, authorization, and value transfer are all Soroban-native. All DAO value flows through a single configurable token set at initialization (USDC, XLM via the Stellar Asset Contract, or any Stellar asset).
 
-This repository is one of three that make up OurDAO:
+This repository is one of three that make up stellar-dapp-forever:
 
 | Repo | Role |
 |---|---|
-| **`ourdao-contracts`** (this repo) | The Soroban contract — the single source of truth for all DAO state |
-| [`ourdao-backend`](https://github.com/ourdao/ourdao-backend) | Off-chain indexer + read API, since Soroban keeps no queryable history |
-| [`ourdao-frontend`](https://github.com/ourdao/ourdao-frontend) | Next.js web app members actually use |
+| **`stellar-dapp-forever`** (this repo) | The Soroban contract — the single source of truth for all DAO state |
+| [`stellar-dapp-forever-backend`](https://github.com/the-Devdrago/stellar-dapp-forever-backend) | Off-chain indexer + read API, since Soroban keeps no queryable history |
+| [`stellar-dapp-forever-frontend`](https://github.com/the-Devdrago/stellar-dapp-forever-frontend) | Next.js web app members actually use |
 
 ## Table of contents
 
@@ -202,7 +202,7 @@ The *k*-th bonus vote starts at `k² × 100` staked tokens, so the thresholds ar
 
 ## Event catalog
 
-Every state-changing call publishes an event, which `ourdao-backend` indexes since Soroban itself keeps no queryable history. Topic symbol → data tuple:
+Every state-changing call publishes an event, which `stellar-dapp-forever-backend` indexes since Soroban itself keeps no queryable history. Topic symbol → data tuple:
 
 | Symbol | Data | Emitted by |
 |---|---|---|
@@ -300,7 +300,7 @@ By default the DAO uses the native XLM Stellar Asset Contract, with the deployer
 as the only admin. Override the defaults with environment variables:
 
 ```bash
-IDENTITY=my-key ALIAS=ourdao-dao TOKEN=<token-contract-id> \
+IDENTITY=my-key ALIAS=stellar-dapp-forever TOKEN=<token-contract-id> \
   ADMINS_JSON='["G...","G..."]' CONSENSUS_THRESHOLD=5100 MEMBERSHIP_FEE=10000000 \
   ./scripts/deploy-testnet.sh
 ```
@@ -339,10 +339,10 @@ Or deploy manually:
 
 ```bash
 stellar contract deploy \
-  --wasm target/wasm32v1-none/release/ourdao_dao.optimized.wasm \
+  --wasm target/wasm32v1-none/release/stellar_dapp_forever.optimized.wasm \
   --network testnet \
   --source <your-identity> \
-  --alias ourdao-dao
+  --alias stellar-dapp-forever
 ```
 
 After deploying, initialize the DAO with your admin set, consensus threshold
@@ -364,14 +364,14 @@ Both scripts take a contract id and default to testnet (`--network <name>` to ch
 It does nothing while the contract is paused, and exits non-zero if any call fails so cron or monitoring can alert on it. Run it with `--dry-run` first to see what it would submit. The identity that pays the fees must already exist:
 
 ```bash
-stellar keys generate ourdao-keeper --network testnet --fund
+stellar keys generate stellar-dapp-forever-keeper --network testnet --fund
 ./scripts/keeper.sh --dry-run --network testnet <contract-id>
 ```
 
 To run it every 15 minutes from cron:
 
 ```bash
-*/15 * * * * IDENTITY=ourdao-keeper /path/to/ourdao-contracts/scripts/keeper.sh --network testnet <contract-id> >> ~/ourdao-keeper.log 2>&1
+*/15 * * * * IDENTITY=stellar-dapp-forever-keeper /path/to/stellar-dapp-forever/scripts/keeper.sh --network testnet <contract-id> >> ~/stellar-dapp-forever-keeper.log 2>&1
 ```
 
 ## Security notes
@@ -395,7 +395,7 @@ Found a vulnerability? See [SECURITY.md](./SECURITY.md) for scope and how to rep
 
 - External security audit before any mainnet consideration.
 - Implement the `seed_state` migration entrypoint designed in [`docs/MIGRATION.md`](./docs/MIGRATION.md) (the doc itself is done; the contract-side entrypoint is a follow-up).
-- Deeper integration testing against `ourdao-backend`'s indexer (event schema drift detection).
+- Deeper integration testing against `stellar-dapp-forever-backend`'s indexer (event schema drift detection).
 
 ## Contributing
 

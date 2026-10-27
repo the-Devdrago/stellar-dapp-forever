@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Build the OurDAO contract, deploy it, and initialize it in one invocation, so
+# Build the stellar-dapp-forever contract, deploy it, and initialize it in one invocation, so
 # a contract is never left deployed-but-uninitialized (`initialize` is a
 # separate transaction and could otherwise be front-run).
 #
@@ -19,9 +19,9 @@
 #   -h, --help            Show this help.
 #
 # Environment overrides:
-#   IDENTITY             stellar keys identity to deploy from   (default: ourdao-deployer)
+#   IDENTITY             stellar keys identity to deploy from   (default: stellar-dapp-forever-deployer)
 #   NETWORK              same as --network                       (default: testnet)
-#   ALIAS                local alias for the contract id         (default: ourdao-dao)
+#   ALIAS                local alias for the contract id         (default: stellar-dapp-forever)
 #   TOKEN                token contract id the DAO uses          (testnet default: native XLM SAC;
 #                                                                required elsewhere)
 #   ADMINS_JSON          JSON array of admin addresses           (default: the deployer)
@@ -37,9 +37,9 @@
 # never generates or funds keys there.
 set -euo pipefail
 
-IDENTITY="${IDENTITY:-ourdao-deployer}"
+IDENTITY="${IDENTITY:-stellar-dapp-forever-deployer}"
 NETWORK="${NETWORK:-testnet}"
-ALIAS="${ALIAS:-ourdao-dao}"
+ALIAS="${ALIAS:-stellar-dapp-forever}"
 TOKEN="${TOKEN:-}"
 ADMINS_JSON="${ADMINS_JSON:-}"
 CONSENSUS_THRESHOLD="${CONSENSUS_THRESHOLD:-5100}"
@@ -50,7 +50,7 @@ if [[ -z "${POLICY_JSON}" ]]; then
   POLICY_JSON="$(printf '{"min_membership_duration":0,"membership_contribution":%s,"max_loan_duration":2592000,"min_interest_rate":500,"max_interest_rate":2000,"cooldown_period":0,"max_loan_to_treasury_ratio":5000,"default_grace_period":259200,"default_penalty_bps":2000,"editing_period":259200,"voting_period":259200,"treasury_threshold":6000,"quorum_bps":0}' "${MEMBERSHIP_FEE}")"
 fi
 SECOND_ASSET_CODE="${SECOND_ASSET_CODE:-OURTESTB}"
-WASM="target/${WASM_TARGET}/release/ourdao_dao.optimized.wasm"
+WASM="target/${WASM_TARGET}/release/stellar_dapp_forever.optimized.wasm"
 
 DRY_RUN=0
 ASSUME_YES=0
@@ -184,7 +184,7 @@ echo "    SHA-256: ${WASM_SHA256}"
 
 echo ""
 echo "==================================================================="
-echo " About to deploy AND initialize OurDAO"
+echo " About to deploy AND initialize stellar-dapp-forever"
 echo "   network:             ${NETWORK}"
 echo "   deployer:            ${DEPLOYER_ADDR}"
 echo "   wasm:                ${WASM}"
@@ -283,7 +283,7 @@ echo "==================================================================="
 if [[ ${DRY_RUN} -eq 1 ]]; then
   echo " Dry run complete: nothing was deployed."
 else
-  echo " Deployed and initialized OurDAO on ${NETWORK}"
+  echo " Deployed and initialized stellar-dapp-forever on ${NETWORK}"
   echo "   contract id: ${CONTRACT_ID}"
   echo "   saved alias: ${ALIAS}"
   echo "   wasm sha256: ${WASM_SHA256}"

@@ -8,7 +8,7 @@ edition = "2021"
 # soroban-sdk 26 requires the wasm32v1-none target, which landed in 1.84.
 rust-version = "1.84"
 license = "MIT"
-repository = "https://github.com/ourdao/ourdao-contracts"
+repository = "https://github.com/the-Devdrago/stellar-dapp-forever"
 
 [workspace.dependencies]
 soroban-sdk = "26.1.0"
