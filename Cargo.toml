@@ -11,7 +11,7 @@ license = "MIT"
 repository = "https://github.com/the-Devdrago/stellar-dapp-forever"
 
 [workspace.dependencies]
-soroban-sdk = "26.1.0"
+soroban-sdk = "29.0.1"
 
 # Release profile tuned for small, deterministic Soroban wasm.
 [profile.release]
